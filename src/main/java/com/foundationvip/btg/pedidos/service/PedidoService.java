@@ -45,7 +45,7 @@ public class PedidoService {
 
     public BigDecimal findTotalOnPedidosByCustomerId(Long customerId){
         var aggregations = newAggregation(
-                match(Criteria.where("customerId").is("customerId")),
+                match(Criteria.where("customerId").is(customerId)),
                 group().sum("total").as("total")
         );
         var response = mongoTemplate.aggregate(aggregations, "tb_pedidos", Document.class);
